@@ -7,7 +7,7 @@ use Jhernandes\AciRedShield\Domain\Item;
 
 class ItemTest extends TestCase
 {
-    public function testCanCreateFromValues()
+    public function testCanCreateFromValues(): void
     {
         $this->assertInstanceOf(Item::class, Item::fromValues(
             'PRODUTO DE TESTES',
@@ -17,7 +17,7 @@ class ItemTest extends TestCase
         ));
     }
 
-    public function testCanBeRepresentedAsArray()
+    public function testCanBeRepresentedAsArray(): void
     {
         $this->assertEquals([
             'name' => 'PRODUTO DE TESTES',
@@ -32,7 +32,7 @@ class ItemTest extends TestCase
         )->jsonSerialize());
     }
 
-    public function testCannotBeCreatedWithInvalidName()
+    public function testCannotBeCreatedWithInvalidName(): void
     {
         $this->expectException(\UnexpectedValueException::class);
         Item::fromValues(
@@ -43,7 +43,7 @@ class ItemTest extends TestCase
         );
     }
 
-    public function testCannotBeCreatedWithLessThanOneItemInQuantity()
+    public function testCannotBeCreatedWithLessThanOneItemInQuantity(): void
     {
         $this->expectException(\UnexpectedValueException::class);
         Item::fromValues(
@@ -54,7 +54,7 @@ class ItemTest extends TestCase
         );
     }
 
-    public function testCannotBeCreatedWithInvalidSkuString()
+    public function testCannotBeCreatedWithInvalidSkuString(): void
     {
         $this->expectException(\UnexpectedValueException::class);
         Item::fromValues(

@@ -7,7 +7,7 @@ use Jhernandes\AciRedShield\Domain\Decimal;
 
 class DecimalTest extends TestCase
 {
-    public function testCanBeCreatedFromValidNumbers()
+    public function testCanBeCreatedFromValidNumbers(): void
     {
         $this->assertInstanceOf(
             Decimal::class,
@@ -25,19 +25,19 @@ class DecimalTest extends TestCase
         );
     }
 
-    public function testCanBeCreatedFromValidString()
+    public function testCanBeCreatedFromValidString(): void
     {
         $this->assertSame(9.78, Decimal::fromString('9.780000000001')->amount());
     }
 
-    public function testCanBeInstantiatedWithFourDecimalNumbers()
+    public function testCanBeInstantiatedWithFourDecimalNumbers(): void
     {
         $decimal = new Decimal(19.78610000000000014, 4);
 
         $this->assertSame('19.7861', (string) $decimal);
     }
 
-    public function testCanBeCreatedFromRangerOfNumber()
+    public function testCanBeCreatedFromRangerOfNumber(): void
     {
         $floatNumber = 0.00;
         $intNumber = 0;
@@ -53,7 +53,7 @@ class DecimalTest extends TestCase
         }
     }
 
-    public function testCanBeCreatedFromFloatOrString()
+    public function testCanBeCreatedFromFloatOrString(): void
     {
         $floatNumber = 0.00;
         $intNumber = 0;
@@ -68,14 +68,14 @@ class DecimalTest extends TestCase
         }
     }
 
-    public function testCannotBeCreatedFromInvalidNumber()
+    public function testCannotBeCreatedFromInvalidNumber(): void
     {
         $this->expectException(\UnexpectedValueException::class);
 
         Decimal::fromString('12.A');
     }
 
-    public function testCannotBeCreatedFromInvalidStringNumber()
+    public function testCannotBeCreatedFromInvalidStringNumber(): void
     {
         $this->expectException(\UnexpectedValueException::class);
 

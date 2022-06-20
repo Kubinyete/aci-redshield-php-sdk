@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain;
 
-class Cart implements \JsonSerializable
+use Jhernandes\AciRedShield\Domain\Item;
+
+class Cart implements \JsonSerializable, \Countable
 {
     private array $items;
 
@@ -13,23 +15,23 @@ class Cart implements \JsonSerializable
         $this->items = [];
     }
 
-    public static function fromItems(array $items): self
+    public static function fromItems(Item ...$items): self
     {
         $cart = new self();
         foreach ($items as $item) {
-            $item = (object) $item;
-            $cart->addItem(
-                $item->name,
-                $item->originalPrice,
-                $item->quantity,
-                $item->sku,
-            );
+            $cart->addItem($item);
         }
 
         return $cart;
     }
 
     public function addItem(
+        Item $item
+    ): void {
+        $this->items[] = $item;
+    }
+
+    public function addItemFromValues(
         string $name,
         float $originalPrice,
         int $quantity,
@@ -43,5 +45,10 @@ class Cart implements \JsonSerializable
         return [
             'items' => array_map(fn ($item) => $item->jsonSerialize(), $this->items)
         ];
+    }
+
+    public function count(): int
+    {
+        return count($this->items);
     }
 }
