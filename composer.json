@@ -12,6 +12,7 @@
         }
     },
     "require": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "jhernandes/person": "^1.0"
     }
 }

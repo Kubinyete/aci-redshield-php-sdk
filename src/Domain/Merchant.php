@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain;
 
+use PHPUnit\Framework\Constraint\Count;
+
 class Merchant implements \JsonSerializable
 {
     public const COUNTRY_BRAZIL = 'BR';
 
     private ?string $entityId;
-    private string $postcode;
-    private string $country;
+    private Postcode $postcode;
+    private Country $country;
     private string $mcc;
 
     public function __construct(
@@ -20,8 +22,8 @@ class Merchant implements \JsonSerializable
         ?string $entityId = null
     ) {
         $this->entityId = $entityId;
-        $this->country = $country;
-        $this->postcode = substr(trim($postcode), 0, 10);
+        $this->country = Country::fromAlpha2($country);
+        $this->postcode = Postcode::fromString($postcode);
         $this->mcc = substr(preg_replace('/\D/', '', $mcc), 0, 4);
     }
 
@@ -38,8 +40,8 @@ class Merchant implements \JsonSerializable
     public function jsonSerialize(): array
     {
         $merchant = [
-            'postcode' => $this->postcode,
-            'country' => $this->country,
+            'postcode' => (string) $this->postcode,
+            'country' => (string) $this->country,
             'mcc' => $this->mcc,
         ];
 

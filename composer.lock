@@ -4,8 +4,133 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ad2c9c4033a0211ae01d567c0f14e1c",
-    "packages": [],
+    "content-hash": "a10e10c9d92c7d81fb5e2f9fbef47c69",
+    "packages": [
+        {
+            "name": "jhernandes/brazilian-address",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jhernandes/brazilian-address.git",
+                "reference": "dc50e4d6fcd81f5d8f02e1bcadad6a17d79b6fc7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jhernandes/brazilian-address/zipball/dc50e4d6fcd81f5d8f02e1bcadad6a17d79b6fc7",
+                "reference": "dc50e4d6fcd81f5d8f02e1bcadad6a17d79b6fc7",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jhernandes\\BrazilianAddress\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joao Hernandes",
+                    "email": "jhernandes@isoftsolutions.com.br"
+                }
+            ],
+            "description": "Brazilian Address Component",
+            "support": {
+                "issues": "https://github.com/jhernandes/brazilian-address/issues",
+                "source": "https://github.com/jhernandes/brazilian-address/tree/v1.0.2"
+            },
+            "time": "2022-06-13T14:49:39+00:00"
+        },
+        {
+            "name": "jhernandes/contacts",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jhernandes/contacts.git",
+                "reference": "fbead20c4e5e2023294d2e6f35db021b1df146b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jhernandes/contacts/zipball/fbead20c4e5e2023294d2e6f35db021b1df146b7",
+                "reference": "fbead20c4e5e2023294d2e6f35db021b1df146b7",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jhernandes\\Contacts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joao Hernandes",
+                    "email": "jhernandes@isoftsolutions.com.br"
+                }
+            ],
+            "description": "Contacts of a person or company",
+            "support": {
+                "issues": "https://github.com/jhernandes/contacts/issues",
+                "source": "https://github.com/jhernandes/contacts/tree/v1.0.1"
+            },
+            "time": "2022-06-13T21:50:19+00:00"
+        },
+        {
+            "name": "jhernandes/person",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jhernandes/person.git",
+                "reference": "9588b15be25030947da163016ac73c2bd6bbe531"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jhernandes/person/zipball/9588b15be25030947da163016ac73c2bd6bbe531",
+                "reference": "9588b15be25030947da163016ac73c2bd6bbe531",
+                "shasum": ""
+            },
+            "require": {
+                "jhernandes/brazilian-address": "^1.0",
+                "jhernandes/contacts": "^1.0",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jhernandes\\Person\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joao Hernandes"
+                }
+            ],
+            "description": "Person Domain",
+            "support": {
+                "issues": "https://github.com/jhernandes/person/issues",
+                "source": "https://github.com/jhernandes/person/tree/v1.0.6"
+            },
+            "time": "2022-06-21T20:33:55+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
