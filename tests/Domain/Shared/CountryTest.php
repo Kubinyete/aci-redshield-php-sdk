@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Jhernandes\AciRedShield\Domain\Country;
+use Jhernandes\AciRedShield\Domain\Shared\Country;
 
 class CountryTest extends TestCase
 {

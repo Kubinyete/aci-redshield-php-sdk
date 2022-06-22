@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Jhernandes\AciRedShield\Domain;
+namespace Jhernandes\AciRedShield\Domain\Card;
 
-use Jhernandes\AciRedShield\Domain\CardNumber;
-use Jhernandes\AciRedShield\Domain\HolderName;
+use Jhernandes\AciRedShield\Domain\Card\CardNumber;
+use Jhernandes\AciRedShield\Domain\Card\HolderName;
 
 class Card implements \JsonSerializable
 {

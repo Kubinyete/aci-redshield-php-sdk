@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain;
 
-class Risk implements \JsonSerializable
+class Risk implements \JsonSerializable, \Countable
 {
     private array $parameters;
 
@@ -13,9 +13,14 @@ class Risk implements \JsonSerializable
         $this->parameters = [];
     }
 
+    public function count(): int
+    {
+        return count($this->parameters);
+    }
+
     public function addUserData(string $value): void
     {
-        $parametersCount = count($this->parameters) + 1;
+        $parametersCount = $this->count() + 1;
         $this->parameters["USER_DATA_{$parametersCount}"] = substr($value, 0, 255);
     }
 

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Jhernandes\AciRedShield\Domain\Item;
+use Jhernandes\AciRedShield\Domain\Cart\Item;
 
 class ItemTest extends TestCase
 {

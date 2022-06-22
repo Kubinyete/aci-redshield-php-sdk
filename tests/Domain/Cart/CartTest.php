@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Jhernandes\AciRedShield\Domain\Cart;
-use Jhernandes\AciRedShield\Domain\Item;
+use Jhernandes\AciRedShield\Domain\Cart\Cart;
+use Jhernandes\AciRedShield\Domain\Cart\Item;
 
 class CartTest extends TestCase
 {

@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Jhernandes\AciRedShield\Domain;
+namespace Jhernandes\AciRedShield\Domain\Cart;
+
+use Jhernandes\AciRedShield\Domain\Shared\Decimal;
 
 class Item implements \JsonSerializable
 {

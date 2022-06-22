@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Jhernandes\AciRedShield\Domain\Text;
+use Jhernandes\AciRedShield\Domain\Shared\Text;
 
 class TextTest extends TestCase
 {

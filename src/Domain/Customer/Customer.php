@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jhernandes\AciRedShield\Domain;
+namespace Jhernandes\AciRedShield\Domain\Customer;
 
 use Jhernandes\Person\Domain\Date;
 use Jhernandes\Person\Domain\Name;

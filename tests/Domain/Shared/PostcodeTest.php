@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Jhernandes\AciRedShield\Domain\Postcode;
+use Jhernandes\AciRedShield\Domain\Shared\Postcode;
 
 class PostcodeTest extends TestCase
 {

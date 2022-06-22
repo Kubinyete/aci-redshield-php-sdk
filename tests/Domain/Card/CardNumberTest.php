@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Jhernandes\AciRedShield\Domain\CardNumber;
 use PHPUnit\Framework\TestCase;
+use Jhernandes\AciRedShield\Domain\Card\CardNumber;
 
 class CardNumberTest extends TestCase
 {

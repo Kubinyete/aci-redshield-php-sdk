@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Jhernandes\AciRedShield\Domain;
 
 use PHPUnit\Framework\Constraint\Count;
+use Jhernandes\AciRedShield\Domain\Shared\Country;
+use Jhernandes\AciRedShield\Domain\Shared\Postcode;
 
 class Merchant implements \JsonSerializable
 {

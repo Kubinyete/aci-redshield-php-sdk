@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Jhernandes\AciRedShield\Domain\Card;
+use Jhernandes\AciRedShield\Domain\Card\Card;
 
 class CardTest extends TestCase
 {

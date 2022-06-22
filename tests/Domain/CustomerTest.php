@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Jhernandes\AciRedShield;
 
 use PHPUnit\Framework\TestCase;
-use Jhernandes\AciRedShield\Domain\Customer;
+use Jhernandes\AciRedShield\Domain\Customer\Customer;
 
 class CustomerTest extends TestCase
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Jhernandes\AciRedShield\Domain;
+namespace Jhernandes\AciRedShield\Domain\Shared;
 
 class Postcode
 {

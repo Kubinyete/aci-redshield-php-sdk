@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Jhernandes\AciRedShield\Domain;
+namespace Jhernandes\AciRedShield\Domain\Cart;
 
-use Jhernandes\AciRedShield\Domain\Item;
+use Jhernandes\AciRedShield\Domain\Cart\Item;
 
 class Cart implements \JsonSerializable, \Countable
 {

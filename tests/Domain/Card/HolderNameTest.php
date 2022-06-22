@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Jhernandes\AciRedShield\Domain\HolderName;
 use PHPUnit\Framework\TestCase;
+use Jhernandes\AciRedShield\Domain\Card\HolderName;
 
 class HolderNameTest extends TestCase
 {

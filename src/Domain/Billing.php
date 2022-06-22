@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain;
 
-use PhpParser\Node\Expr\PostDec;
-use PHPUnit\Framework\Constraint\Count;
+use Jhernandes\AciRedShield\Domain\Shared\Text;
+use Jhernandes\AciRedShield\Domain\Shared\Country;
+use Jhernandes\AciRedShield\Domain\Shared\Postcode;
 
 class Billing implements \JsonSerializable
 {
