@@ -13,6 +13,15 @@ class Risk implements \JsonSerializable, \Countable
         $this->parameters = [];
     }
 
+    public static function fromList(array $list): self
+    {
+        $risk = new self();
+        foreach ($list as $value) {
+            $risk->addUserData($value);
+        }
+        return $risk;
+    }
+
     public function count(): int
     {
         return count($this->parameters);
