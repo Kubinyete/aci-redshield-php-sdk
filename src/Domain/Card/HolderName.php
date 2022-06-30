@@ -34,7 +34,7 @@ class HolderName
         }
 
         foreach ($holderNames as $singlename) {
-            if (!preg_match('/^[a-zA-Z]+$/', $singlename)) {
+            if (!preg_match('/^[a-zA-ZÀ-ÖØ-öø-ÿ]+$/', $singlename)) {
                 throw new \UnexpectedValueException(
                     sprintf('%s is not a valid holder', $holder)
                 );

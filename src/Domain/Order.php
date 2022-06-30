@@ -8,6 +8,7 @@ use Jhernandes\AciRedShield\Domain\Risk;
 use Jhernandes\AciRedShield\Domain\Billing;
 use Jhernandes\AciRedShield\Domain\Shipping;
 use Jhernandes\AciRedShield\Domain\Card\Card;
+use Jhernandes\AciRedShield\Domain\Cart\Cart;
 use Jhernandes\AciRedShield\Domain\PaymentBrand;
 use Jhernandes\AciRedShield\Domain\TransactionId;
 use Jhernandes\AciRedShield\Domain\Shared\Decimal;
@@ -16,6 +17,7 @@ use Jhernandes\AciRedShield\Domain\Customer\Customer;
 
 class Order implements \JsonSerializable
 {
+    private EntityId $entityId;
     private TransactionId $merchantTransactionId;
     private Decimal $amount;
     private Currency $currency;
@@ -28,11 +30,13 @@ class Order implements \JsonSerializable
     private Risk $risk;
 
     public function __construct(
+        string $entityId,
         string $merchantTransactionId,
         float $amount,
         string $paymentBrand,
         string $currency = 'BRL'
     ) {
+        $this->entityId = EntityId::fromString($entityId);
         $this->merchantTransactionId = TransactionId::fromString($merchantTransactionId);
         $this->amount = Decimal::fromAmount($amount);
 
@@ -41,17 +45,23 @@ class Order implements \JsonSerializable
     }
 
     public static function fromValues(
+        string $entityId,
         string $merchantTransactionId,
         float $amount,
         string $paymentBrand,
         string $currency = 'BRL'
     ): self {
-        return new self($merchantTransactionId, $amount, $paymentBrand, $currency);
+        return new self($entityId, $merchantTransactionId, $amount, $paymentBrand, $currency);
     }
 
     public function addCard(Card $card): void
     {
         $this->card = $card;
+    }
+
+    public function addCart(Cart $cart): void
+    {
+        $this->cart = $cart;
     }
 
     public function addCustomer(Customer $customer): void
@@ -77,6 +87,7 @@ class Order implements \JsonSerializable
     public function jsonSerialize(): array
     {
         $order = [
+            'entityId' => (string) $this->entityId,
             'merchantTransactionId' => (string) $this->merchantTransactionId,
             'amount' => $this->amount->amount(),
             'currency' => (string) $this->currency,
@@ -85,6 +96,10 @@ class Order implements \JsonSerializable
 
         if (isset($this->card)) {
             $order['card'] = $this->card->jsonSerialize();
+        }
+
+        if (isset($this->cart)) {
+            $order['cart'] = $this->cart->jsonSerialize();
         }
 
         if (isset($this->customer)) {

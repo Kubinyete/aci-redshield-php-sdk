@@ -3,7 +3,8 @@
     "description": "SDK PHP for ACI RedShield",
     "type": "library",
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "fzaninotto/faker": "^1.9"
     },
     "license": "MIT",
     "autoload": {
@@ -13,6 +14,7 @@
     },
     "require": {
         "php": ">=7.4",
-        "jhernandes/person": "^1.0"
+        "jhernandes/person": "^1.0",
+        "guzzlehttp/guzzle": "^7.4"
     }
 }

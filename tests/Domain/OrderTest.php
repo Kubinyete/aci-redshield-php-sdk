@@ -11,11 +11,12 @@ use Jhernandes\AciRedShield\Domain\Card\Card;
 
 class OrderTest extends TestCase
 {
+    private const ENTITYID = '8ac7a4ca80d226b40180d238310b007d';
     private Order $order;
 
     public function setUp(): void
     {
-        $this->order = Order::fromValues('123456', 169.78, 'visa');
+        $this->order = Order::fromValues(self::ENTITYID, '123456', 169.78, 'visa');
     }
 
     public function testCanBeCreatedFromValidValues(): void

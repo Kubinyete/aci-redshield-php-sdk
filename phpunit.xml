@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory>./tests/</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="ENTITYID" value="8ac7a4ca80d226b40180d238310b007d" />
+        <env name="TOKEN" value="OGFjN2E0Y2E4MGQyMjZiNDAxODBkMjM3ODQwMDAwNzd8eXlrRnFhVGEyWA==" />
+    </php>
+</phpunit>

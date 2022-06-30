@@ -30,7 +30,7 @@ class Risk implements \JsonSerializable, \Countable
     public function addUserData(string $value): void
     {
         $parametersCount = $this->count() + 1;
-        $this->parameters["USER_DATA_{$parametersCount}"] = substr($value, 0, 255);
+        $this->parameters["parameters[USER_DATA{$parametersCount}]"] = substr($value, 0, 255);
     }
 
     public function jsonSerialize(): array

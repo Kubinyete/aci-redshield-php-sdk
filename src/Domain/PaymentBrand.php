@@ -7,10 +7,12 @@ namespace Jhernandes\AciRedShield\Domain;
 class PaymentBrand
 {
     private const VISA = 'visa';
+    private const MASTERCARD = 'mastercard';
     private const MASTER = 'master';
     private const ELO = 'elo';
     private const AMEX = 'amex';
     private const HIPERCARD = 'hipercard';
+    private const HIPER = 'hiper';
     private const BOLETO = 'boleto';
     private const PIX = 'pix';
     private const DINERS = 'diners';
@@ -26,7 +28,7 @@ class PaymentBrand
     {
         $this->guardAgainstInvalidPaymentBrand($paymentBrand);
 
-        $this->paymentBrand = $paymentBrand;
+        $this->paymentBrand = $this->translate($paymentBrand);
     }
 
     public static function fromString(string $paymentBrand): self
@@ -48,10 +50,24 @@ class PaymentBrand
         }
     }
 
+    private function translate(string $paymentBrand): string
+    {
+        $translatedBrands = [
+            self::MASTERCARD => self::MASTER,
+            self::HIPER => self::HIPERCARD
+        ];
+
+        if (key_exists($paymentBrand, $translatedBrands)) {
+            return $translatedBrands[$paymentBrand];
+        }
+        return $paymentBrand;
+    }
+
     private function brands(): array
     {
         return [
             self::VISA,
+            self::MASTERCARD,
             self::MASTER,
             self::ELO,
             self::AMEX,
