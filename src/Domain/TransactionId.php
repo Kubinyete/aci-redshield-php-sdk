@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain;
 
-class TransactionId
+class TransactionId implements \Stringable
 {
     private string $transactionId;
 
@@ -28,7 +28,7 @@ class TransactionId
     private function guardAgainstInvalidTransactionId(string $transactionId): void
     {
         if (!preg_match('/^[0-9]{1,40}$/', $transactionId)) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('%s is not a valid TransactionId', $transactionId)
             );
         }

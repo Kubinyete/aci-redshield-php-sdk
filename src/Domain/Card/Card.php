@@ -53,7 +53,9 @@ class Card implements \JsonSerializable
     {
         $monthAsInt = (int) $month;
         if (!is_numeric($month) || $monthAsInt < 1 || $monthAsInt > 12) {
-            throw new \UnexpectedValueException(sprintf('%s is not valid expiry month', $month));
+            throw new \DomainException(
+                sprintf('%s is not valid expiry month', $month)
+            );
         }
     }
 
@@ -62,11 +64,15 @@ class Card implements \JsonSerializable
         $yearAsInt = (int) $year;
 
         if (!preg_match("/^(\d{4})$/", $year)) {
-            throw new \UnexpectedValueException(sprintf('%s is not a valid expiry year format (YYYY)', $year));
+            throw new \DomainException(
+                sprintf('%s is not a valid expiry year format (YYYY)', $year)
+            );
         }
 
         if (!is_numeric($year) || $yearAsInt < 2000) {
-            throw new \UnexpectedValueException(sprintf('%s is not valid expiry year', $year));
+            throw new \DomainException(
+                sprintf('%s is not valid expiry year', $year)
+            );
         }
     }
 }

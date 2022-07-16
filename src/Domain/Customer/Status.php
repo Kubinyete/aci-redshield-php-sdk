@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain\Customer;
 
-class Status
+class Status implements \Stringable
 {
     private const NEW = 'NEW';
     private const EXISTING = 'EXISTING';

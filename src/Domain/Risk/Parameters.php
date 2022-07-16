@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Jhernandes\AciRedShield\Domain;
+namespace Jhernandes\AciRedShield\Domain\Risk;
 
-class Risk implements \JsonSerializable, \Countable
+class Parameters implements \Countable, \IteratorAggregate, \JsonSerializable
 {
     private array $parameters;
 
@@ -22,9 +22,19 @@ class Risk implements \JsonSerializable, \Countable
         return $risk;
     }
 
+    public function getIterator(): \Traversable
+    {
+        return new \ArrayIterator($this->parameters);
+    }
+
     public function count(): int
     {
         return count($this->parameters);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return $this->parameters;
     }
 
     public function addUserData(string $value): void
@@ -33,8 +43,8 @@ class Risk implements \JsonSerializable, \Countable
         $this->parameters["parameters[USER_DATA{$parametersCount}]"] = substr($value, 0, 255);
     }
 
-    public function jsonSerialize(): array
+    public function addTimeOnFile(int $timeOfFile): void
     {
-        return $this->parameters;
+        $this->parameters["parameters[TimeOnFile]"] = (string) $timeOfFile;
     }
 }

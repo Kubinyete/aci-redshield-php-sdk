@@ -17,7 +17,7 @@ class CountryTest extends TestCase
 
     public function testCannotBeCreatedFromInvalidIso3166CountryCode()
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         Country::fromAlpha2("BRA");
     }

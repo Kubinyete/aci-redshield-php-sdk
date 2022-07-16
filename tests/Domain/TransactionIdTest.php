@@ -14,21 +14,21 @@ class TransactionIdTest extends TestCase
 
     public function testCannotBeCreatedFromEmptyString(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         TransactionId::fromString('');
     }
 
     public function testCannotBeCreatedFromStringGreaterThan40Characters(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         TransactionId::fromString('12345678901234567890123456789012345678901');
     }
 
     public function testCannotBeCreatedFromInvalidString(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         TransactionId::fromString(sha1('Invalid TransactionId'));
     }

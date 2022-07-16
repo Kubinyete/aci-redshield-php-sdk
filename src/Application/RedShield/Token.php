@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Application\RedShield;
 
-class Token
+class Token implements \Stringable
 {
     private string $token;
 

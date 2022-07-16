@@ -47,7 +47,7 @@ class IdentificationDocId implements \JsonSerializable
     private function guardAgainstFromInvalidIdentificationDocId(string $identificationDocId): void
     {
         if (!preg_match('/^[0-9]{11,14}$/', $identificationDocId)) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('%s is not a valid identificationDocId. [0-9a-zA-Z]{11,14}', $identificationDocId)
             );
         }

@@ -14,14 +14,14 @@ class CustomerIdTest extends TestCase
 
     public function testCannotBeCreatedFromInvalidString(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         CustomerId::fromString('!@#$%ˆ*ˆ&*(&');
     }
 
     public function testCannotBeCreatedFromEmptyString(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         CustomerId::fromString('');
     }
@@ -31,7 +31,7 @@ class CustomerIdTest extends TestCase
         $text = sha1('Cannot be greater than this');
 
         $this->assertGreaterThan(32, strlen($text));
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         CustomerId::fromString($text);
     }

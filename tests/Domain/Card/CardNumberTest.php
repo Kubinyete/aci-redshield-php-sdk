@@ -25,7 +25,7 @@ class CardNumberTest extends TestCase
 
     public function testCannotBeCreatedFromInvalidNumber(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         CardNumber::fromString('1234 1234 1234 1234');
     }

@@ -53,14 +53,14 @@ class Item implements \JsonSerializable
     private function ensureIsValidName(string $name): void
     {
         if (strlen($name) >= 65) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('name must be lower than 65 characters long', $name)
             );
         }
 
         foreach (explode(' ', $name) as $singlename) {
             if (!preg_match('/^[0-9a-zA-ZÀ-ÖØ-öø-ÿ]+$/', $singlename)) {
-                throw new \UnexpectedValueException(
+                throw new \DomainException(
                     sprintf('%s is not a valid name [0-9a-zA-ZÀ-ÖØ-öø-ÿ]', $name)
                 );
             }
@@ -70,7 +70,7 @@ class Item implements \JsonSerializable
     private function ensureIsValidQuantity(int $quantity): void
     {
         if ($quantity <= 0) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('quantity must be higher than one', $quantity)
             );
         }
@@ -79,13 +79,13 @@ class Item implements \JsonSerializable
     private function ensureIsValidSku(string $sku): void
     {
         if (strlen($sku) > 12) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('%s sku must be lower than 13 characters long', $sku)
             );
         }
 
         if (!preg_match('/^[0-9a-zA-Z_#]+$/', $sku)) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('%s is not a valid sku [0-9a-zA-Z]', $sku)
             );
         }

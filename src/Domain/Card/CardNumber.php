@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain\Card;
 
-class CardNumber
+class CardNumber implements \Stringable
 {
     private string $number;
 
     public function __construct(string $number)
     {
-        $number = preg_replace('/\D/', '', $number);
+        $number = $this->sanitize($number);
+
         $this->ensureIsValidLuhn($number);
 
         $this->number = $number;
@@ -24,6 +25,11 @@ class CardNumber
     public function __toString(): string
     {
         return $this->number;
+    }
+
+    private function sanitize(string $number): string
+    {
+        return preg_replace('/\D/', '', $number);
     }
 
     private function ensureIsValidLuhn(string $number): void
@@ -46,7 +52,7 @@ class CardNumber
         }
 
         if ($total % 10 !== 0) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('%s is not a valid card number', $number)
             );
         }

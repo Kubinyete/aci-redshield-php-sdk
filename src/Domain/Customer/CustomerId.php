@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain\Customer;
 
-class CustomerId
+class CustomerId implements \Stringable
 {
     private string $customerId;
 
@@ -28,7 +28,7 @@ class CustomerId
     private function guardAgainstInvalidCustomerId(string $customerId): void
     {
         if (!preg_match('/^[0-9a-zA-Z]{1,32}$/', $customerId)) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('%s is not a valid customerId. [0-9a-zA-Z]{1,32}', $customerId)
             );
         }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain\Shared;
 
-class Postcode
+class Postcode implements \Stringable
 {
     private string $postcode;
 
@@ -30,7 +30,7 @@ class Postcode
     private function guardAgainstInvalidPostCode(string $postcode): void
     {
         if (!preg_match('/^[0-9]{8,10}$/', $postcode)) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('Not a valid postcode number: %s', $postcode)
             );
         }

@@ -25,13 +25,13 @@ class IdentificationDocIdTest extends TestCase
 
     public function testCannotBeCreatedFromStringLesserThan11Characters()
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
         IdentificationDocId::fromString('123456');
     }
 
     public function testCannotBeCreatedFromStringGreaterThan13Characters()
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
         IdentificationDocId::fromString('123456123456123456');
     }
 }

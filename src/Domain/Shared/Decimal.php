@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain\Shared;
 
-class Decimal
+class Decimal implements \Stringable
 {
     private float $value;
     private int $decimals;
@@ -25,7 +25,7 @@ class Decimal
         $number = self::hasDecimalCommaSeparetor($number);
 
         if (!is_numeric($number)) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('%s is not a valid number', $number)
             );
         }

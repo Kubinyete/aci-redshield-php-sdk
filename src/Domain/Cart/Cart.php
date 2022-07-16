@@ -6,7 +6,7 @@ namespace Jhernandes\AciRedShield\Domain\Cart;
 
 use Jhernandes\AciRedShield\Domain\Cart\Item;
 
-class Cart implements \JsonSerializable, \Countable
+class Cart implements \JsonSerializable, \Countable, \IteratorAggregate
 {
     private array $items;
 
@@ -25,9 +25,8 @@ class Cart implements \JsonSerializable, \Countable
         return $cart;
     }
 
-    public function addItem(
-        Item $item
-    ): void {
+    public function addItem(Item $item): void
+    {
         $this->items[] = $item;
     }
 
@@ -40,15 +39,20 @@ class Cart implements \JsonSerializable, \Countable
         $this->items[] = Item::fromValues($name, $originalPrice, $quantity, $sku);
     }
 
-    public function jsonSerialize(): array
+    public function getIterator(): \Traversable
     {
-        return [
-            'items' => array_map(fn ($item) => $item->jsonSerialize(), $this->items)
-        ];
+        return new \ArrayIterator($this->items);
     }
 
     public function count(): int
     {
         return count($this->items);
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'items' => array_map(fn ($item) => $item->jsonSerialize(), $this->items)
+        ];
     }
 }

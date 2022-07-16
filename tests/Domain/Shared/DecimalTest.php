@@ -70,14 +70,14 @@ class DecimalTest extends TestCase
 
     public function testCannotBeCreatedFromInvalidNumber(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         Decimal::fromString('12.A');
     }
 
     public function testCannotBeCreatedFromInvalidStringNumber(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         Decimal::fromString('NUMBER');
     }

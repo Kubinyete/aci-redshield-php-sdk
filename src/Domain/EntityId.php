@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain;
 
-class EntityId
+class EntityId implements \Stringable
 {
     private string $entityId;
 
@@ -28,7 +28,7 @@ class EntityId
     private function guardAgainsInvalidEntityId(string $entityId): void
     {
         if (!preg_match('/^[0-9a-zA-Z]{32}$/', $entityId)) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('%s is not a valid EntityId', $entityId),
             );
         }

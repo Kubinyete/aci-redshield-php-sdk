@@ -15,6 +15,7 @@
     "require": {
         "php": ">=7.4",
         "jhernandes/person": "^1.0",
-        "guzzlehttp/guzzle": "^7.4"
+        "guzzlehttp/guzzle": "^7.4",
+        "symfony/polyfill-php80": "^1.26"
     }
 }

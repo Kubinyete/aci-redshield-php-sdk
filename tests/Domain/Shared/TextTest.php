@@ -27,7 +27,7 @@ class TextTest extends TestCase
     public function testCannotBeCreatedFromInvalidText(): void
     {
         $this->expectExceptionMessage('is not a valid text');
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         Text::fromString('Rua %ˆTeste//De//Txto', 200);
     }
@@ -35,7 +35,7 @@ class TextTest extends TestCase
     public function testCannotBeCreatedFromEmptyText(): void
     {
         $this->expectExceptionMessage('cannot be blank');
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         Text::fromString('', 10);
     }
@@ -43,7 +43,7 @@ class TextTest extends TestCase
     public function testCannotBeCreatedWithLessThanOneMaxLength()
     {
         $this->expectExceptionMessage('maxLength must be at least 1');
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         Text::fromString('Texto Simples', 0);
     }

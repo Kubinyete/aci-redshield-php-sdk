@@ -35,7 +35,8 @@ class RedShield
             $response = $this->request->post($this->environment->url(), $formData);
 
             return RedShieldResponse::fromResponse($response);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
+            var_dump($e->getMessage());
             throw new \RuntimeException('There was a problem to register the order.');
         }
     }

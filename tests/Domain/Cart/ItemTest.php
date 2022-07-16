@@ -34,7 +34,7 @@ class ItemTest extends TestCase
 
     public function testCannotBeCreatedWithInvalidName(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
         Item::fromValues(
             'PRODUTO@TESTES>COM',
             9.89,
@@ -45,7 +45,7 @@ class ItemTest extends TestCase
 
     public function testCannotBeCreatedWithLessThanOneItemInQuantity(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
         Item::fromValues(
             'PRODUTO DE VALOR 10',
             10.00,
@@ -56,7 +56,7 @@ class ItemTest extends TestCase
 
     public function testCannotBeCreatedWithInvalidSkuString(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
         Item::fromValues(
             'PRODUTO DE VALOR 10',
             10.00,

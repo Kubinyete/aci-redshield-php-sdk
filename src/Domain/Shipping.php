@@ -94,7 +94,17 @@ class Shipping implements \JsonSerializable
         ];
 
         if (isset($this->customer)) {
-            $shipping['customer'] = $this->customer->jsonSerialize();
+            $shipping['customer'] = array_filter(
+                $this->customer->jsonSerialize(),
+                fn ($key) => in_array($key, [
+                    'email',
+                    'phone',
+                    'givenName',
+                    'middleName',
+                    'surname',
+                ]),
+                ARRAY_FILTER_USE_KEY
+            );
         }
         return $shipping;
     }

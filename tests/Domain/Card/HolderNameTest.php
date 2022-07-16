@@ -14,14 +14,14 @@ class HolderNameTest extends TestCase
 
     public function testCannotBeCreatedFromOneName(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         HolderName::fromString('JULIO');
     }
 
     public function testCannotBeCreatedFromInvalidCharacters(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         HolderName::fromString('JÚLIO CESAR');
     }

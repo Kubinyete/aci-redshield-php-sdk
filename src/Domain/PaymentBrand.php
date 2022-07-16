@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain;
 
-class PaymentBrand
+class PaymentBrand implements \Stringable
 {
     private const VISA = 'visa';
     private const MASTERCARD = 'mastercard';
@@ -44,7 +44,7 @@ class PaymentBrand
     private function guardAgainstInvalidPaymentBrand(string $paymentBrand): void
     {
         if (!in_array(strtolower($paymentBrand), $this->brands())) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('%s is not valid PaymentBrand', $paymentBrand)
             );
         }

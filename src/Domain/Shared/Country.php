@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain\Shared;
 
-class Country
+class Country implements \Stringable
 {
     private string $country;
 
@@ -28,7 +28,7 @@ class Country
     private function guardAgainstInvalidAlpha2(string $alpha2): void
     {
         if (!preg_match('/^[a-zA-Z]{2}$/', $alpha2)) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('Not a valid alpha2 key: %s', $alpha2)
             );
         }

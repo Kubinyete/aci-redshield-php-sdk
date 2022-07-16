@@ -32,14 +32,14 @@ class CardTest extends TestCase
 
     public function testCannotBeCreateWithInvalidMonth(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         Card::fromValues('FLAVIO AUGUSTUS', '5454 5454 5454 5454', '45', '2025');
     }
 
     public function testCannotBeCreateWithInvalidYear(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         Card::fromValues('FLAVIO AUGUSTUS', '5454 5454 5454 5454', '12', '25');
     }

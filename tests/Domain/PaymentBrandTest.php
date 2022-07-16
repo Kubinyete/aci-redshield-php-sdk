@@ -47,7 +47,7 @@ class PaymentBrandTest extends TestCase
 
     public function testCannotBeCreatedFromInvalidString(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         PaymentBrand::fromString('NOT A VALID PAYMENT');
     }

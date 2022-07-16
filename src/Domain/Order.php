@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain;
 
-use Jhernandes\AciRedShield\Domain\Risk;
 use Jhernandes\AciRedShield\Domain\Billing;
 use Jhernandes\AciRedShield\Domain\Shipping;
 use Jhernandes\AciRedShield\Domain\Card\Card;
 use Jhernandes\AciRedShield\Domain\Cart\Cart;
+use Jhernandes\AciRedShield\Domain\Risk\Risk;
 use Jhernandes\AciRedShield\Domain\PaymentBrand;
 use Jhernandes\AciRedShield\Domain\TransactionId;
 use Jhernandes\AciRedShield\Domain\Shared\Decimal;

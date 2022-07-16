@@ -17,14 +17,14 @@ class EntityIdTest extends TestCase
 
     public function testCannotBeCreatedFromInvalidString(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         EntityId::fromString('8ac7a4ca80d226-40180d-3831-b007d');
     }
 
     public function testCannotBeCreatedFromStringWithWrongLength(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         EntityId::fromString('8ac7a4ca80d226');
     }

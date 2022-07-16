@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Jhernandes\AciRedShield\Domain\Risk;
 use Jhernandes\AciRedShield\Domain\Order;
 use Jhernandes\AciRedShield\Domain\Billing;
 use Jhernandes\AciRedShield\Domain\Shipping;
 use Jhernandes\AciRedShield\Domain\Card\Card;
+use Jhernandes\AciRedShield\Domain\Risk\Risk;
 
 class OrderTest extends TestCase
 {
@@ -59,7 +59,7 @@ class OrderTest extends TestCase
 
     public function testCanAddRisk(): void
     {
-        $this->order->addRisk(Risk::fromList([
+        $this->order->addRisk(Risk::fromValues('123456000001', 'I', [
             'Rua Teste | 01156060',
             'user_data_2'
         ]));

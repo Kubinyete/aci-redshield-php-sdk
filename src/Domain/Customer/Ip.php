@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain\Customer;
 
-class Ip
+class Ip implements \Stringable
 {
     private string $ip;
 
@@ -31,7 +31,7 @@ class Ip
             !filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) &&
             !filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)
         ) {
-            throw new \UnexpectedValueException(
+            throw new \DomainException(
                 sprintf('%s is not valid IP', $ip)
             );
         }

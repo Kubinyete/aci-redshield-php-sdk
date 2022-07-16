@@ -19,7 +19,7 @@ class PostcodeTest extends TestCase
 
     public function testCannotBeCreatedFromInvalidPostcode(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         Postcode::fromString('012A-123A');
     }

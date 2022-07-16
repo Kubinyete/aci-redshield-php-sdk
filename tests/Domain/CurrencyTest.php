@@ -19,7 +19,7 @@ class CurrencyTest extends TestCase
 
     public function testCannotBeCreatedFromInvalidIsoAlpha3(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         Currency::fromAlpha3('123');
     }

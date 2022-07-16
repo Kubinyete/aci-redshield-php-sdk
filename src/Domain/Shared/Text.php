@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain\Shared;
 
-class Text
+class Text implements \Stringable
 {
     private string $text;
     private int $maxLength;
@@ -37,14 +37,14 @@ class Text
     private function ensureMaxLengthHasMinimumSize(int $maxLength): void
     {
         if ($maxLength <= 0) {
-            throw new \UnexpectedValueException('maxLength must be at least 1.');
+            throw new \DomainException('maxLength must be at least 1.');
         }
     }
 
     private function ensureIsNotBlank(string $text, bool $blank): void
     {
         if (!$blank && empty($text)) {
-            throw new \UnexpectedValueException(sprintf('%s cannot be blank.', $text));
+            throw new \DomainException(sprintf('%s cannot be blank.', $text));
         }
     }
 
@@ -52,7 +52,7 @@ class Text
     {
         foreach (explode(' ', $text) as $string) {
             if (!preg_match('/^[0-9a-zA-ZÀ-ÖØ-öø-ÿ,.]+$/', $string)) {
-                throw new \UnexpectedValueException(
+                throw new \DomainException(
                     sprintf('%s is not a valid text', $text)
                 );
             }

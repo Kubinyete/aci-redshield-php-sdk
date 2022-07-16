@@ -24,6 +24,7 @@ class Customer implements \JsonSerializable
     private Email $email;
     private Ip $ip;
     private Status $status;
+    private Fingerprint $browserFingerprint;
 
     public function __construct(string $merchantCustomerId, string $name, string $identificationDocId)
     {
@@ -68,9 +69,14 @@ class Customer implements \JsonSerializable
         $this->status = Status::fromString($status);
     }
 
+    public function setFingerprint(string $fingerprint): void
+    {
+        $this->browserFingerprint = Fingerprint::fromString($fingerprint);
+    }
+
     public function jsonSerialize(): array
     {
-        return [
+        $customer = [
             'merchantCustomerId' => (string) $this->merchantCustomerId,
             'givenName' => $this->name->firstname(),
             'middleName' => '',
@@ -84,5 +90,11 @@ class Customer implements \JsonSerializable
             'identificationDocId' => (string) $this->identificationDocId->docId(),
             'status' => (string) $this->status,
         ];
+
+        if (isset($this->browserFingerprint)) {
+            $customer['browserFingerprint']['value'] = (string) $this->browserFingerprint;
+        }
+
+        return $customer;
     }
 }

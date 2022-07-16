@@ -25,7 +25,7 @@ class IpTest extends TestCase
 
     public function testCannotBeCreatedFromInvalidIp(): void
     {
-        $this->expectException(\UnexpectedValueException::class);
+        $this->expectException(\DomainException::class);
 
         Ip::fromString('127001');
     }
