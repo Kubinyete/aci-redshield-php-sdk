@@ -9,16 +9,18 @@ use Jhernandes\AciRedShield\Domain\Order;
 use Jhernandes\AciRedShield\Domain\TransactionId;
 use Jhernandes\AciRedShield\Application\Http\Request;
 use Jhernandes\AciRedShield\Application\Helpers\ArrayHelper;
+use Jhernandes\AciRedShield\Application\Http\LoggerInterface;
 use Jhernandes\AciRedShield\Application\RedShield\RedShieldResponse;
+use Throwable;
 
 class RedShield
 {
     private Request $request;
     private Environment $environment;
 
-    public function __construct(string $environment, string $token)
+    public function __construct(string $environment, string $token, ?LoggerInterface $logger = null)
     {
-        $this->request = new Request();
+        $this->request = new Request($logger);
         $this->request->setBearerToken($token);
         $this->environment = Environment::fromString($environment);
     }
@@ -33,10 +35,8 @@ class RedShield
             }
 
             $response = $this->request->post($this->environment->url(), $formData);
-
             return RedShieldResponse::fromResponse($response);
-        } catch (\Throwable $e) {
-            var_dump($e->getMessage());
+        } catch (Throwable $e) {
             throw new \RuntimeException('There was a problem to register the order.');
         }
     }
