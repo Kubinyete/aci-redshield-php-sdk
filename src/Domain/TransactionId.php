@@ -27,7 +27,7 @@ class TransactionId implements \Stringable
 
     private function guardAgainstInvalidTransactionId(string $transactionId): void
     {
-        if (!preg_match('/^[0-9]{1,40}$/', $transactionId)) {
+        if (!preg_match('/^[0-9a-zA-Z-]{1,255}$/', $transactionId)) {
             throw new \DomainException(
                 sprintf('%s is not a valid TransactionId', $transactionId)
             );

@@ -27,9 +27,9 @@ class CustomerId implements \Stringable
 
     private function guardAgainstInvalidCustomerId(string $customerId): void
     {
-        if (!preg_match('/^[0-9a-zA-Z]{1,32}$/', $customerId)) {
+        if (!preg_match('/^[0-9a-zA-Z-]{1,255}$/', $customerId)) {
             throw new \DomainException(
-                sprintf('%s is not a valid customerId. [0-9a-zA-Z]{1,32}', $customerId)
+                sprintf('%s is not a valid customerId.', $customerId)
             );
         }
     }
