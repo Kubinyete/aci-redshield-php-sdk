@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Application\RedShield;
 
-use RuntimeException;
 use Jhernandes\AciRedShield\Domain\Order;
-use Jhernandes\AciRedShield\Domain\TransactionId;
 use Jhernandes\AciRedShield\Application\Http\Request;
 use Jhernandes\AciRedShield\Application\Helpers\ArrayHelper;
-use Jhernandes\AciRedShield\Application\Http\LoggerInterface;
 use Jhernandes\AciRedShield\Application\RedShield\RedShieldResponse;
 use Throwable;
 
@@ -18,9 +15,9 @@ class RedShield
     private Request $request;
     private Environment $environment;
 
-    public function __construct(string $environment, string $token, ?LoggerInterface $logger = null)
+    public function __construct(string $environment, string $token)
     {
-        $this->request = new Request($logger);
+        $this->request = new Request();
         $this->request->setBearerToken($token);
         $this->environment = Environment::fromString($environment);
     }
@@ -40,20 +37,4 @@ class RedShield
             throw new \RuntimeException('There was a problem to register the order.');
         }
     }
-
-    /**
-     * TODO CONSULT
-     */
-    // public function consult(string $merchantTransactionId): RedShieldResponse
-    // {
-    //     try {
-    //         $transaction = TransactionId::fromString($merchantTransactionId);
-
-    //         $response = $this->request->get($this->environment);
-
-    //         return RedShieldResponse::fromResponse($response);
-    //     } catch (\Exception $e) {
-    //         throw new \RuntimeException('There was a problem to consult the order.');
-    //     }
-    // }
 }
