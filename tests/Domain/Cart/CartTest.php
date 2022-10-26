@@ -34,7 +34,7 @@ class CartTest extends TestCase
             'items' => [
                 [
                     "name" => 'Item 1',
-                    "originalPrice" => 1.0,
+                    "originalPrice" => '1.00',
                     "quantity" => 1,
                     "sku" => 'ITEM1'
                 ]

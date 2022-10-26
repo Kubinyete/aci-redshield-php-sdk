@@ -89,7 +89,7 @@ class Order implements \JsonSerializable
         $order = [
             'entityId' => (string) $this->entityId,
             'merchantTransactionId' => (string) $this->merchantTransactionId,
-            'amount' => $this->amount->amount(),
+            'amount' => (string)$this->amount,
             'currency' => (string) $this->currency,
             'paymentBrand' => (string) $this->paymentBrand,
         ];

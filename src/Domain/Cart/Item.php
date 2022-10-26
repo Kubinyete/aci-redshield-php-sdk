@@ -44,7 +44,7 @@ class Item implements \JsonSerializable
     {
         return [
             'name' => $this->name,
-            'originalPrice' => $this->originalPrice->amount(),
+            'originalPrice' => (string)$this->originalPrice,
             'quantity' => $this->quantity,
             'sku' => $this->sku
         ];
