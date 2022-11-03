@@ -10,10 +10,7 @@ class HolderName implements \Stringable
 
     public function __construct(string $holder)
     {
-        $this->holder = $this->sanitize($holder);
-
-        $this->ensureIsValidHolder($holder);
-
+        $holder = $this->sanitize($holder);
         $this->holder = strtoupper($holder);
     }
 
@@ -29,25 +26,25 @@ class HolderName implements \Stringable
 
     private function sanitize(string $holder): string
     {
-        return preg_replace('/[^a-zA-Z ]/', '', trim($holder));
+        return preg_replace('/[ ]+/', ' ', preg_replace('/[^a-zA-Z ]/', '', trim($holder)));
     }
 
-    private function ensureIsValidHolder(string $holder): void
-    {
-        $holderNames = explode(' ', $holder);
+    // private function ensureIsValidHolder(string $holder): void
+    // {
+    //     $holderNames = explode(' ', $holder);
 
-        // if (count($holderNames) <= 1) {
-        //     throw new \DomainException(
-        //         sprintf('%s must have at least first and one lastname', $holder)
-        //     );
-        // }
+    //     // if (count($holderNames) <= 1) {
+    //     //     throw new \DomainException(
+    //     //         sprintf('%s must have at least first and one lastname', $holder)
+    //     //     );
+    //     // }
 
-        foreach ($holderNames as $singlename) {
-            if (!preg_match('/^[a-zA-Z]+$/', $singlename)) {
-                throw new \DomainException(
-                    sprintf('%s is not a valid holder', $holder)
-                );
-            }
-        }
-    }
+    //     foreach ($holderNames as $singlename) {
+    //         if (!preg_match('/^[a-zA-Z]+$/', $singlename)) {
+    //             throw new \DomainException(
+    //                 sprintf('%s is not a valid holder', $holder)
+    //             );
+    //         }
+    //     }
+    // }
 }
