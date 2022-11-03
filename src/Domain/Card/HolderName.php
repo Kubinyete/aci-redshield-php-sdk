@@ -10,7 +10,7 @@ class HolderName implements \Stringable
 
     public function __construct(string $holder)
     {
-        $holder = $this->sanitize($holder);
+        $this->holder = $this->sanitize($holder);
 
         $this->ensureIsValidHolder($holder);
 
@@ -29,17 +29,18 @@ class HolderName implements \Stringable
 
     private function sanitize(string $holder): string
     {
-        return trim($holder);
+        return preg_replace('/[^a-zA-Z ]/', '', trim($holder));
     }
 
     private function ensureIsValidHolder(string $holder): void
     {
         $holderNames = explode(' ', $holder);
-        if (count($holderNames) <= 1) {
-            throw new \DomainException(
-                sprintf('%s must have at least first and one lastname', $holder)
-            );
-        }
+
+        // if (count($holderNames) <= 1) {
+        //     throw new \DomainException(
+        //         sprintf('%s must have at least first and one lastname', $holder)
+        //     );
+        // }
 
         foreach ($holderNames as $singlename) {
             if (!preg_match('/^[a-zA-Z]+$/', $singlename)) {
