@@ -24,6 +24,7 @@ class Order implements \JsonSerializable
     private PaymentBrand $paymentBrand;
 
     private Card $card;
+    private Cart $cart;
     private Customer $customer;
     private Billing $billing;
     private Shipping $shipping;
