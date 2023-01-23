@@ -18,13 +18,14 @@ class Customer implements \JsonSerializable
     private CustomerId $merchantCustomerId;
     private Name $name;
     private IdentificationDocId $identificationDocId;
-    private Date $birthDate;
-    private Phone $phone;
-    private Phone $mobile;
-    private Email $email;
-    private Ip $ip;
     private Status $status;
-    private Fingerprint $browserFingerprint;
+
+    private ?Date $birthDate;
+    private ?Phone $phone;
+    private ?Phone $mobile;
+    private ?Email $email;
+    private ?Ip $ip;
+    private ?Fingerprint $browserFingerprint;
 
     public function __construct(string $merchantCustomerId, string $name, string $identificationDocId)
     {
@@ -32,6 +33,13 @@ class Customer implements \JsonSerializable
         $this->name = Name::fromString($name);
         $this->identificationDocId = IdentificationDocId::fromString($identificationDocId);
         $this->status = Status::fromString('NEW');
+
+        $this->birthDate = null;
+        $this->phone = null;
+        $this->mobile = null;
+        $this->email = null;
+        $this->ip = null;
+        $this->browserFingerprint = null;
     }
 
     public static function fromValues(string $merchantCustomerId, string $name, string $identificationDocId): self
