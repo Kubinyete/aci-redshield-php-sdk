@@ -50,6 +50,8 @@ class Text implements \Stringable
 
     private function ensureIsValidText(string $text): void
     {
+        $text = trim(preg_replace('/ +/', ' ', $text));
+
         foreach (explode(' ', $text) as $string) {
             if (!preg_match('/^[0-9a-zA-ZÀ-ÖØ-öø-ÿ,.]+$/', $string)) {
                 throw new \DomainException(

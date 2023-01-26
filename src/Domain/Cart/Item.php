@@ -58,6 +58,8 @@ class Item implements \JsonSerializable
             );
         }
 
+        $name = trim(preg_replace('/ +/', ' ', $name));
+
         foreach (explode(' ', $name) as $singlename) {
             if (!preg_match('/^[0-9a-zA-ZÀ-ÖØ-öø-ÿ]+$/', $singlename)) {
                 throw new \DomainException(
