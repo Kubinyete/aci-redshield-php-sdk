@@ -58,15 +58,14 @@ class Item implements \JsonSerializable
             );
         }
 
-        $name = trim(preg_replace('/ +/', ' ', $name));
-
-        foreach (explode(' ', $name) as $singlename) {
-            if (!preg_match('/^[0-9a-zA-ZÀ-ÖØ-öø-ÿ]+$/', $singlename)) {
-                throw new \DomainException(
-                    sprintf('%s is not a valid name [0-9a-zA-ZÀ-ÖØ-öø-ÿ]', $name)
-                );
-            }
-        }
+        // $name = trim(preg_replace('/ +/', ' ', $name));
+        // foreach (explode(' ', $name) as $singlename) {
+        //     if (!preg_match('/^[0-9a-zA-ZÀ-ÖØ-öø-ÿ]+$/', $singlename)) {
+        //         throw new \DomainException(
+        //             sprintf('%s is not a valid name [0-9a-zA-ZÀ-ÖØ-öø-ÿ]', $name)
+        //         );
+        //     }
+        // }
     }
 
     private function ensureIsValidQuantity(int $quantity): void
@@ -86,10 +85,10 @@ class Item implements \JsonSerializable
             );
         }
 
-        if (!preg_match('/^[0-9a-zA-Z_#]+$/', $sku)) {
-            throw new \DomainException(
-                sprintf('%s is not a valid sku [0-9a-zA-Z]', $sku)
-            );
-        }
+        // if (!preg_match('/^[0-9a-zA-Z_#]+$/', $sku)) {
+        //     throw new \DomainException(
+        //         sprintf('%s is not a valid sku [0-9a-zA-Z]', $sku)
+        //     );
+        // }
     }
 }
