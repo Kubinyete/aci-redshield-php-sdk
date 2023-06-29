@@ -11,9 +11,7 @@ class CardNumber implements \Stringable
     public function __construct(string $number)
     {
         $number = $this->sanitize($number);
-
-        $this->ensureIsValidLuhn($number);
-
+        // $this->ensureIsValidLuhn($number);
         $this->number = $number;
     }
 
