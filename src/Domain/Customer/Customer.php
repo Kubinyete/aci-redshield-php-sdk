@@ -17,7 +17,7 @@ class Customer implements \JsonSerializable
 {
     private CustomerId $merchantCustomerId;
     private Name $name;
-    private IdentificationDocId $identificationDocId;
+    private ?IdentificationDocId $identificationDocId;
     private Status $status;
 
     private ?Date $birthDate;
@@ -27,11 +27,11 @@ class Customer implements \JsonSerializable
     private ?Ip $ip;
     private ?Fingerprint $browserFingerprint;
 
-    public function __construct(string $merchantCustomerId, string $name, string $identificationDocId, string $identificationDocType = IdentificationDocId::TAXSTATEMENT)
+    public function __construct(string $merchantCustomerId, string $name, ?string $identificationDocId, ?string $identificationDocType = IdentificationDocId::TAXSTATEMENT)
     {
         $this->merchantCustomerId = CustomerId::fromString($merchantCustomerId);
         $this->name = Name::fromString($name);
-        $this->identificationDocId = IdentificationDocId::fromString($identificationDocId, $identificationDocType);
+        $this->identificationDocId = !$identificationDocType || !$identificationDocId ? null : IdentificationDocId::fromString($identificationDocId, $identificationDocType);
         $this->status = Status::fromString('NEW');
 
         $this->birthDate = null;
@@ -42,9 +42,9 @@ class Customer implements \JsonSerializable
         $this->browserFingerprint = null;
     }
 
-    public static function fromValues(string $merchantCustomerId, string $name, string $identificationDocId): self
+    public static function fromValues(string $merchantCustomerId, string $name, ?string $identificationDocId, ?string $identificationDocType = IdentificationDocId::TAXSTATEMENT): self
     {
-        return new self($merchantCustomerId, $name, $identificationDocId);
+        return new self($merchantCustomerId, $name, $identificationDocId, $identificationDocType);
     }
 
     public function setEmail(string $email): void
@@ -94,8 +94,8 @@ class Customer implements \JsonSerializable
             'mobile' => (string) $this->mobile ?? null,
             'email' => (string) $this->email ?? null,
             'ip' => (string) $this->ip ?? null,
-            'identificationDocType' => (string) $this->identificationDocId->docType(),
-            'identificationDocId' => (string) $this->identificationDocId->docId(),
+            'identificationDocType' => $this->identificationDocId?->docType(),
+            'identificationDocId' => $this->identificationDocId?->docId(),
             'status' => (string) $this->status,
         ];
 
