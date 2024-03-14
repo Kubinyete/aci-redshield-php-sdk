@@ -20,7 +20,7 @@ class IdentificationDocId implements \JsonSerializable
         $identificationDocId = mb_strcut(preg_replace('/[^a-zA-Z0-9]/', '', $identificationDocId), 0, 64);
         $this->guardAgainstInvalidDocumentNumber($identificationDocId);
 
-        $this->identificationDocType = self::TAXSTATEMENT;
+        $this->identificationDocType = $identificationDocType;
         $this->identificationDocId = $identificationDocId;
     }
 
