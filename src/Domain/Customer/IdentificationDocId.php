@@ -4,26 +4,35 @@ declare(strict_types=1);
 
 namespace Jhernandes\AciRedShield\Domain\Customer;
 
+use InvalidArgumentException;
+
 class IdentificationDocId implements \JsonSerializable
 {
-    private const DOC_TYPE = 'TAXSTATEMENT';
+    public const TAXSTATEMENT = 'TAXSTATEMENT';
+    public const IDCARD = 'IDCARD';
+    public const PASSPORT = 'PASSPORT';
 
     private string $identificationDocType;
     private string $identificationDocId;
 
-    public function __construct(string $identificationDocId)
+    public function __construct(string $identificationDocId, string $identificationDocType)
     {
-        $identificationDocId = preg_replace('/\D/', '', $identificationDocId);
+        $identificationDocId = mb_strcut(preg_replace('/[^a-zA-Z0-9]/', '', $identificationDocId), 0, 64);
+        $this->guardAgainstInvalidDocumentNumber($identificationDocId);
 
-        $this->guardAgainstFromInvalidIdentificationDocId($identificationDocId);
-
-        $this->identificationDocType = self::DOC_TYPE;
-        $this->identificationDocId = preg_replace('/\D/', '', $identificationDocId);
+        $this->identificationDocType = self::TAXSTATEMENT;
+        $this->identificationDocId = $identificationDocId;
     }
 
-    public static function fromString(string $identificationDocId): self
+    private function guardAgainstInvalidDocumentNumber(string $number): void
     {
-        return new self($identificationDocId);
+        $length = mb_strlen($number);
+        if ($length < 8 || $length > 64) throw new InvalidArgumentException("Identification number is expected to have a length between 8 and 64 characters");
+    }
+
+    public static function fromString(string $identificationDocId, string $identificationDocType = self::TAXSTATEMENT): self
+    {
+        return new self($identificationDocId, $identificationDocType);
     }
 
     public function docType(): string
@@ -42,14 +51,5 @@ class IdentificationDocId implements \JsonSerializable
             'identificationDocType' => $this->identificationDocType,
             'identificationDocId' => $this->identificationDocId,
         ];
-    }
-
-    private function guardAgainstFromInvalidIdentificationDocId(string $identificationDocId): void
-    {
-        if (!preg_match('/^[0-9]{11,14}$/', $identificationDocId)) {
-            throw new \DomainException(
-                sprintf('%s is not a valid identificationDocId. [0-9a-zA-Z]{11,14}', $identificationDocId)
-            );
-        }
     }
 }

@@ -27,11 +27,11 @@ class Customer implements \JsonSerializable
     private ?Ip $ip;
     private ?Fingerprint $browserFingerprint;
 
-    public function __construct(string $merchantCustomerId, string $name, string $identificationDocId)
+    public function __construct(string $merchantCustomerId, string $name, string $identificationDocId, string $identificationDocType = IdentificationDocId::TAXSTATEMENT)
     {
         $this->merchantCustomerId = CustomerId::fromString($merchantCustomerId);
         $this->name = Name::fromString($name);
-        $this->identificationDocId = IdentificationDocId::fromString($identificationDocId);
+        $this->identificationDocId = IdentificationDocId::fromString($identificationDocId, $identificationDocType);
         $this->status = Status::fromString('NEW');
 
         $this->birthDate = null;
