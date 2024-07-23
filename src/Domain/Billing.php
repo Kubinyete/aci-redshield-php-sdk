@@ -45,11 +45,11 @@ class Billing implements \JsonSerializable
         string $country
     ) {
         $this->postcode = Postcode::fromString($postcode);
-        $this->street1 = Text::fromString($street1, self::STREET_MAXLENGHT);
-        $this->street2 = Text::fromString($street2, self::STREET_MAXLENGHT);
-        $this->houseNumber1 = Text::fromString($houseNumber1, self::HOUSENUMBER_MAXLENGHT);
-        $this->city = Text::fromString($city, self::CITY_MAXLENGHT);
-        $this->state = Text::fromString($state, 2);
+        $this->street1 = Text::fromString($street1, self::STREET_MAXLENGHT, true);
+        $this->street2 = Text::fromString($street2, self::STREET_MAXLENGHT, true);
+        $this->houseNumber1 = Text::fromString($houseNumber1, self::HOUSENUMBER_MAXLENGHT, true);
+        $this->city = Text::fromString($city, self::CITY_MAXLENGHT, true);
+        $this->state = Text::fromString($state, 2, true);
         $this->country = Country::fromAlpha2($country);
     }
 

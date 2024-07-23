@@ -19,9 +19,9 @@ class Text implements \Stringable
         $this->maxLength = $maxLength;
     }
 
-    public static function fromString(string $text, int $maxLength = 255): self
+    public static function fromString(string $text, int $maxLength = 255, bool $blank = false): self
     {
-        return new self($text, $maxLength);
+        return new self($text, $maxLength, $blank);
     }
 
     public function length(): int
@@ -53,7 +53,7 @@ class Text implements \Stringable
         $text = trim(preg_replace('/ +/', ' ', $text));
 
         foreach (explode(' ', $text) as $string) {
-            if (!preg_match('/^[0-9a-zA-ZÀ-ÖØ-öø-ÿ,.]+$/', $string)) {
+            if (strlen($string) > 0 && !preg_match('/^[0-9a-zA-ZÀ-ÖØ-öø-ÿ,.]+$/', $string)) {
                 throw new \DomainException(
                     sprintf('%s is not a valid text', $text)
                 );
